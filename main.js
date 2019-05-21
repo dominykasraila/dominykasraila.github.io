@@ -6,6 +6,8 @@ var context = renderer.getContext();
 var stave = new VF.Stave(0, 0, 100);
 stave.addClef("treble");
 stave.setContext(context).draw();
+var currentNote = randomNoteNoRepeat();
+showNote(currentNote);
 
 function randomNoteNoRepeat() {
     if (typeof this.lastNote == 'undefined') {
@@ -50,6 +52,13 @@ function keyboardPress(e) {
     var noteName = e.getAttribute("id");
     var notes = { c: 'c/4', d: 'd/4', e: 'e/4', f: 'f/4', g: 'g/4', a: 'a/4', b: 'b/4' };
     if (Object.keys(notes).includes(noteName)) {
-        showNote(notes[noteName]);
+        checkNote(notes[noteName]);
+    }
+}
+
+function checkNote(note) {
+    if (note[0] == currentNote[0]) {
+        currentNote = randomNoteNoRepeat();
+        showNote(currentNote);
     }
 }
