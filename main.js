@@ -6,6 +6,9 @@ var context = renderer.getContext();
 var stave = new VF.Stave(0, 0, 100);
 stave.addClef("treble");
 stave.setContext(context).draw();
+var currentNote = randomNoteNoRepeat();
+var correctGuesses = 0;
+var incorrectGuesses = 0;
 
 function randomNoteNoRepeat() {
     if (typeof this.lastNote == 'undefined') {
